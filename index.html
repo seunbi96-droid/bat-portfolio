@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>송은비 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* 레이아웃: 네이비 헤더 밴드 → 핵심 수치 4칸 → 사례 6개(문제·진단·실행·결과 + 사례별 시각 자료) */
+:root {
+  --bg: #f5f7f9;
+  --card: #ffffff;
+  --ink: #0e0e0e;
+  --sub: #575757;
+  --sage: #0b1b33;
+  --mint: #d9f5a8;
+  --pale: #f1f8e4;
+  --acc: #1e7dd6;
+  --line: #e0e0e0;
+  --head-ink: #ffffff;
+  --font: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0e0e0e; --card: #171717; --ink: #f5f5f5; --sub: #adadad;
+    --sage: #bcff64; --mint: #26331a; --pale: #1c2414; --acc: #6db2f2; --line: #2e2e2e;
+    --head-ink: #0e0e0e;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0e0e0e; --card: #171717; --ink: #f5f5f5; --sub: #adadad;
+  --sage: #bcff64; --mint: #26331a; --pale: #1c2414; --acc: #6db2f2; --line: #2e2e2e;
+  --head-ink: #0e0e0e;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); line-height: 1.65; font-size: 16px; }
+a { color: inherit; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3, p { text-wrap: balance; margin: 0; }
+p, li { text-wrap: pretty; }
+
+/* header */
+.top { background: var(--sage); color: var(--head-ink); border-bottom: 6px solid #bcff64; }
+.top h1::after { content: ""; display: block; width: 56px; height: 6px; margin-top: 14px; background: #bcff64; border-radius: 3px; }
+.top .wrap { display: flex; gap: 28px; align-items: center; justify-content: space-between; flex-wrap: wrap; padding-top: 44px; padding-bottom: 44px; }
+.top h1 { font-size: clamp(34px, 6vw, 52px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; }
+.top .role { margin-top: 8px; font-size: 17px; font-weight: 500; opacity: .92; }
+.top .lead { margin-top: 14px; max-width: 560px; font-size: 15.5px; opacity: .95; }
+.contact { font-size: 14px; line-height: 1.9; opacity: .95; }
+.contact b { font-weight: 700; margin-right: 8px; }
+
+/* stat tiles */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: -28px; }
+.tile { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 20px 18px 18px; }
+.tile .n { font-size: clamp(30px, 4.4vw, 40px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; color: var(--sage); font-variant-numeric: tabular-nums; }
+.tile .n small { font-size: .5em; font-weight: 700; margin-left: 3px; }
+.tile.hot .n { color: var(--acc); }
+.tile p { margin-top: 8px; font-size: 14px; color: var(--sub); }
+
+/* index */
+.index { margin-top: 44px; }
+.index h2, .sec-title { font-size: 13px; font-weight: 700; letter-spacing: .08em; color: var(--sub); text-transform: none; }
+.idx { list-style: none; padding: 0; margin: 12px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.idx a { display: block; text-decoration: none; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; height: 100%; }
+.idx a:hover, .idx a:focus-visible { border-color: var(--sage); outline: none; box-shadow: 0 0 0 2px var(--mint); }
+.idx .no { font-size: 12px; font-weight: 700; color: var(--sage); }
+.idx .t { display: block; font-weight: 700; margin-top: 2px; line-height: 1.4; }
+.idx .w { display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 500; background: var(--pale); color: var(--sage); border-radius: 999px; padding: 2px 10px; }
+
+/* case */
+.case { margin-top: 56px; padding-top: 40px; border-top: 2px solid var(--ink); scroll-margin-top: 16px; }
+.case-head { display: grid; grid-template-columns: auto 1fr; gap: 6px 18px; align-items: end; }
+.case-head .big { grid-row: span 2; font-size: clamp(52px, 9vw, 80px); font-weight: 900; line-height: .9; color: var(--mint); font-variant-numeric: tabular-nums; }
+.case-head h2 { font-size: clamp(22px, 3.4vw, 30px); font-weight: 900; line-height: 1.3; letter-spacing: -0.01em; }
+.case-head .meta { font-size: 14px; color: var(--sub); }
+.way { display: inline-block; margin-left: 8px; font-size: 12px; font-weight: 700; color: var(--sage); background: var(--pale); border-radius: 999px; padding: 2px 10px; vertical-align: 2px; }
+
+.steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 24px; }
+.step { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; font-size: 14.5px; }
+.step .k { display: block; font-size: 12px; font-weight: 700; color: var(--sage); letter-spacing: .06em; margin-bottom: 4px; }
+.step.res { background: var(--sage); border-color: var(--sage); color: var(--head-ink); }
+.step.res .k { color: var(--head-ink); opacity: .85; }
+
+.viz { margin-top: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px; }
+.viz .cap { font-size: 12.5px; color: var(--sub); margin-top: 12px; }
+.viz h3 { font-size: 13px; font-weight: 700; color: var(--sub); margin-bottom: 14px; }
+
+/* flow */
+.flow { list-style: none; margin: 0; padding: 0; display: flex; gap: 0; align-items: stretch; flex-wrap: wrap; row-gap: 10px; }
+.flow li { position: relative; flex: 1 1 140px; min-width: 130px; background: var(--pale); border-radius: 8px; padding: 12px 14px; font-size: 14px; font-weight: 500; margin-right: 22px; }
+.flow li:last-child { margin-right: 0; }
+.flow li::after { content: ""; position: absolute; right: -17px; top: 50%; width: 0; height: 0; margin-top: -7px; border-left: 11px solid var(--sage); border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
+.flow li:last-child::after { display: none; }
+.flow li small { display: block; font-weight: 400; font-size: 12.5px; color: var(--sub); margin-top: 2px; }
+.flow li.hl { background: var(--sage); color: var(--head-ink); }
+.flow li.hl small { color: var(--head-ink); opacity: .85; }
+
+/* money bar */
+.money { display: flex; height: 54px; border-radius: 8px; overflow: hidden; font-weight: 700; font-size: 14px; }
+.money div { display: flex; align-items: center; padding: 0 14px; white-space: nowrap; }
+.money .a { width: 65%; background: var(--acc); color: #fff; }
+.money .b { width: 35%; background: var(--sage); color: var(--head-ink); }
+.months { display: grid; grid-template-columns: repeat(12, 1fr); gap: 5px; margin-top: 8px; }
+.months span { aspect-ratio: 1; background: var(--sage); border-radius: 3px; opacity: .85; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+/* bars */
+.bars { display: grid; gap: 10px; }
+.bar { display: grid; grid-template-columns: 112px 1fr 76px; align-items: center; gap: 12px; font-size: 14px; }
+.bar .track { height: 26px; background: var(--pale); border-radius: 6px; overflow: hidden; }
+.bar .fill { height: 100%; background: var(--sage); border-radius: 6px; }
+.bar.est .fill { background: repeating-linear-gradient(135deg, var(--acc) 0 8px, color-mix(in srgb, var(--acc) 70%, var(--card)) 8px 16px); }
+.bar .v { font-weight: 900; font-variant-numeric: tabular-nums; text-align: right; }
+.bar.est .v { color: var(--acc); }
+.bar .l small { display: block; font-size: 12px; color: var(--sub); }
+
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ba > div { border-radius: 10px; padding: 16px 18px; font-size: 14.5px; }
+.ba .before { border: 1px dashed var(--sub); }
+.ba .after { background: var(--pale); border: 1px solid var(--sage); }
+.ba b { display: block; font-size: 12px; letter-spacing: .08em; color: var(--sage); margin-bottom: 6px; }
+.ba ul { margin: 0; padding-left: 18px; }
+
+.shot { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 8px; }
+.shots { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+.foot { margin: 72px 0 48px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 14px; color: var(--sub); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 800px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .idx { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
+  .two, .ba { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .idx, .steps { grid-template-columns: 1fr; }
+  .flow li { flex-basis: 100%; margin-right: 0; }
+  .flow li::after { right: 50%; top: auto; bottom: -15px; margin: 0 -7px 0 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 10px solid var(--sage); border-bottom: 0; }
+  .bar { grid-template-columns: 1fr 70px; }
+  .bar .l { grid-column: 1 / -1; }
+  .months { grid-template-columns: repeat(8, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div>
+      <h1>송은비</h1>
+      <div class="role">지원 직무 · 전략기획그룹 HR 운영(HRM)</div>
+      <p class="lead">사람의 경험을 설계하고, 인사 데이터의 어긋남을 원인까지 파고들고, 해결한 방식을 기준과 시스템으로 남긴 사례 6개입니다. 모든 사례는 문제, 진단, 실행, 결과 순서로 정리했습니다.</p>
+    </div>
+    <div class="contact">
+      <div><b>전화</b>010-2966-6504</div>
+      <div><b>메일</b>seunbi96@gmail.com</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="stats" aria-label="핵심 수치">
+    <div class="tile hot"><div class="n">약 400<small>만 원</small></div><p>급여 공제액과 납부액의 차액, 24개월·약 90건을 대조해 원인 규명</p></div>
+    <div class="tile"><div class="n">260<small>만 원</small></div><p>과공제로 확인되어 환급 처리한 금액</p></div>
+    <div class="tile"><div class="n">0<small>건</small></div><p>직원 공백 기간을 포함한 1년간 법정 신고 오류</p></div>
+    <div class="tile hot"><div class="n">67<small>%</small></div><p>27년 통합 시 법정의무교육비 24년 대비 감소 추정(계획)</p></div>
+  </section>
+
+  <section class="index" aria-label="사례 목차">
+    <h2>사례 구성</h2>
+    <ol class="idx">
+      <li><a href="#case1"><span class="no">01</span><span class="t">신입생 모집·온보딩 세미나 재설계</span><span class="w">문제를 정의하고 본질 파고들기</span></a></li>
+      <li><a href="#case2"><span class="no">02</span><span class="t">탕비실 익명 게시판 도입</span><span class="w">빠르게 실행하고 개선하기</span></a></li>
+      <li><a href="#case3"><span class="no">03</span><span class="t">시간제 근로자 24개월 급여 검증</span><span class="w">본질 파고들기</span></a></li>
+      <li><a href="#case4"><span class="no">04</span><span class="t">법정의무교육 통합 제안</span><span class="w">조직의 자산으로 확장하기</span></a></li>
+      <li><a href="#case5"><span class="no">05</span><span class="t">그룹웨어 연차 자동 반영</span><span class="w">빠르게 실행하고 개선하기</span></a></li>
+      <li><a href="#case6"><span class="no">06</span><span class="t">업무 담당자 찾기 R&amp;R 페이지</span><span class="w">조직의 자산으로 확장하기</span></a></li>
+    </ol>
+  </section>
+
+  <!-- 01 -->
+  <section class="case" id="case1">
+    <div class="case-head">
+      <div class="big">01</div>
+      <h2>신입생 모집·온보딩 세미나 재설계</h2>
+      <div class="meta">서울대학교 여성학 협동과정 · 2023.03 ~ 2024.02</div>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="k">문제</span>지원자가 설명회를 거쳐 입학하고 적응하기까지가 한 사람의 경험이라고 보고, 단계마다 무엇을 궁금해하는지 확인해야 한다고 판단했습니다.</div>
+      <div class="step"><span class="k">진단</span>설명회, 서류 접수, 심사 일정과 장소, 온보딩이 따로 운영되면 지원자에게는 끊긴 경험이 됩니다.</div>
+      <div class="step"><span class="k">실행</span>모집 과정 전체를 운영하고, 신입생의 관심사를 사전 조사해 세미나 커리큘럼과 강사진에 반영했습니다.</div>
+      <div class="step res"><span class="k">결과</span>신입생 4~5명 규모의 온보딩 세미나를 수요조사 기반으로 재설계해 운영했습니다.</div>
+    </div>
+    <div class="viz">
+      <h3>지원자가 지나가는 경로</h3>
+      <ol class="flow">
+        <li>입시설명회<small>기획·운영</small></li>
+        <li>지원 서류<small>접수·관리</small></li>
+        <li>심사<small>일정 조율·장소 섭외</small></li>
+        <li class="hl">신입생 수요조사<small>관심사 사전 파악</small></li>
+        <li class="hl">온보딩 세미나<small>커리큘럼·강사진에 반영</small></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="case" id="case2">
+    <div class="case-head">
+      <div class="big">02</div>
+      <h2>탕비실 익명 게시판 도입</h2>
+      <div class="meta">서울대학교 생활과학대학 · 2025.04 ~ 2026.05</div>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="k">문제</span>업무 협조를 요청하거나 의견을 낼 때 편하게 말할 수 있는 통로가 필요하다고 판단했습니다.</div>
+      <div class="step"><span class="k">진단</span>의견이 들어오는 것만으로는 부족하고, 받아들여졌다는 것이 보여야 다음 의견이 나옵니다.</div>
+      <div class="step"><span class="k">실행</span>별도 지시와 예산 없이 익명 게시판을 자발적으로 도입하고, 반영된 의견에는 표시를 달았습니다.</div>
+      <div class="step res"><span class="k">결과</span>행정실 안에서 간식을 주제로 한 대화가 늘고, 업무 협조 요청도 더 부드러워졌습니다.</div>
+    </div>
+    <div class="viz">
+      <h3>의견이 돌아오는 구조</h3>
+      <ol class="flow">
+        <li>익명으로 의견 남기기<small>탕비실 게시판</small></li>
+        <li>의견 확인<small>담당자가 직접</small></li>
+        <li class="hl">반영된 의견에 표시<small>되돌려주기</small></li>
+        <li class="hl">대화·협조 분위기 변화<small>다음 의견으로 이어짐</small></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="case" id="case3">
+    <div class="case-head">
+      <div class="big">03</div>
+      <h2>시간제 근로자 24개월 급여 데이터 검증</h2>
+      <div class="meta">서울대학교 생활과학대학 · 2025.04 ~ 2026.05</div>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="k">문제</span>세금 통장 잔액과 급여 공제액이 맞지 않는 약 400만 원 차액을 발견했습니다.</div>
+      <div class="step"><span class="k">진단</span>원인을 모르는 상태에서 추측으로 고치지 않고, 건별로 대조해 어긋난 지점부터 확인해야 한다고 판단했습니다.</div>
+      <div class="step"><span class="k">실행</span>공제액과 실제 납부액을 한 줄씩 대조하는 엑셀을 직접 설계해 24개월·약 90건을 전수 검증했습니다.</div>
+      <div class="step res"><span class="k">결과</span>원인을 규명해 과공제 260만 원을 환급하고, 나머지는 분석 자료와 함께 인수인계했습니다.</div>
+    </div>
+    <div class="viz">
+      <div class="two">
+        <div>
+          <h3>약 400만 원 차액의 처리</h3>
+          <div class="money" role="img" aria-label="약 400만 원 중 260만 원 환급, 140만 원 인수인계">
+            <div class="a">260만 원 환급</div>
+            <div class="b">140만 원 인수인계</div>
+          </div>
+          <p class="cap">환급 이후에도 정리되지 않은 140만 원은 분석 자료와 함께 넘기고, 관리 기준을 문서로 남겼습니다.</p>
+        </div>
+        <div>
+          <h3>24개월 전수 대조 (약 90건)</h3>
+          <div class="months" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <p class="cap">칸 하나가 한 달입니다. 월별 공제액과 실제 납부액을 건마다 대조했습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="case" id="case4">
+    <div class="case-head">
+      <div class="big">04</div>
+      <h2>법정의무교육 통합 제안</h2>
+      <div class="meta">씨티씨바이오 경영기획실 · 2026.11 승인·이관 완료, 사업장 통합 추진 중</div>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="k">문제</span>ESG 평가 자료를 취합하다가 본사와 사업장이 법정의무교육을 각각 계약하고 단가도 다르다는 사실을 발견했습니다.</div>
+      <div class="step"><span class="k">진단</span>24·25년 지출과 26년 견적을 비교해, 분산 계약이 비용과 관리 두 측면에서 비효율임을 확인했습니다.</div>
+      <div class="step"><span class="k">실행</span>본사 통합 관리안을 전담 작성하고, 교육 업무를 인사총무팀으로 일원화하는 안을 직접 기획해 제안했습니다.</div>
+      <div class="step res"><span class="k">결과</span>제안이 승인되어 교육 업무 이관을 마쳤고, 27년 사업장 통합과 단일 계약을 목표로 추진 중입니다.</div>
+    </div>
+    <div class="viz">
+      <h3>법정의무교육비 (24년 = 100)</h3>
+      <div class="bars">
+        <div class="bar"><div class="l">24년</div><div class="track"><div class="fill" style="width:100%"></div></div><div class="v">100</div></div>
+        <div class="bar"><div class="l">25년</div><div class="track"><div class="fill" style="width:54%"></div></div><div class="v">54</div></div>
+        <div class="bar"><div class="l">26년 견적</div><div class="track"><div class="fill" style="width:53%"></div></div><div class="v">53</div></div>
+        <div class="bar est"><div class="l">27년 계획<small>산업안전보건교육 통합 전제</small></div><div class="track"><div class="fill" style="width:33%"></div></div><div class="v">33</div></div>
+      </div>
+      <p class="cap">25·26년 계약은 인사총무팀이 체결했고, 27년은 통합안을 기준으로 한 추정입니다. 금액은 비공개로 하고 24년 대비 비율로만 표시했습니다. 계약업체는 2곳에서 1곳으로 줄이는 것이 목표입니다.</p>
+    </div>
+    <div class="viz">
+      <h3>업무 구조의 변화</h3>
+      <div class="ba">
+        <div class="before"><b>BEFORE</b><ul><li>본사와 사업장이 각각 계약</li><li>업체마다 단가가 다름</li><li>교육 업무 담당이 흩어져 있음</li></ul></div>
+        <div class="after"><b>AFTER (추진)</b><ul><li>본사 통합 관리안으로 단일 계약 추진</li><li>교육 업무를 인사총무팀으로 일원화</li><li>27년 사업장 통합이 목표</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="case" id="case5">
+    <div class="case-head">
+      <div class="big">05</div>
+      <h2>그룹웨어 연차 자동 반영 프로세스</h2>
+      <div class="meta">씨티씨바이오 경영기획실 · 2026.11 ~ 운영 중</div>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="k">문제</span>결재가 끝난 휴가를 부서 캘린더에 반영하려면 기안문을 하루에도 여러 번 확인하고 건마다 직접 입력해야 했습니다.</div>
+      <div class="step"><span class="k">진단</span>입력 대상과 표기 방식이 정해져 있지 않아 사람이 매번 판단했습니다. 규칙을 정하면 자동으로 처리할 수 있는 일이라고 보았습니다.</div>
+      <div class="step"><span class="k">실행</span>입력 대상을 결재 완료된 오늘 이후 휴가로 한정하고 유형별 표기 규칙을 정의해, 평일 점심시간에 자동 실행되도록 설계했습니다.</div>
+      <div class="step res"><span class="k">결과</span>건당 3~5분의 수기 입력과 하루 여러 번의 기안문 확인이 필요 없어졌습니다.</div>
+    </div>
+    <div class="viz">
+      <h3>자동 입력 흐름</h3>
+      <ol class="flow">
+        <li>휴가 기안 결재 완료<small>그룹웨어 전자결재</small></li>
+        <li>대상 필터<small>부서원 · 오늘 이후 휴가</small></li>
+        <li>표기 규칙 적용<small>[이름]반차(오전) 등</small></li>
+        <li class="hl">부서 캘린더 자동 입력<small>평일 점심시간 실행</small></li>
+      </ol>
+    </div>
+    <div class="viz">
+      <div class="ba">
+        <div class="before"><b>BEFORE</b><ul><li>기안문을 하루에도 여러 번 확인</li><li>건당 3~5분 수기 입력</li><li>담당자에 따라 표기가 달라질 수 있음</li></ul></div>
+        <div class="after"><b>AFTER</b><ul><li>평일 점심시간 자동 확인·입력</li><li>[이름]반차(오전) 형식으로 표기 통일</li><li>수기 입력과 반복 확인 제거</li></ul></div>
+      </div>
+      <div class="shots" style="margin-top:16px">
+        <img class="shot" src="screen-calendar.png" alt="자동 입력된 휴가 일정이 이름과 유형으로 표시된 부서 캘린더 예시 화면" width="1896" height="1190" loading="lazy">
+      </div>
+      <p class="cap">예시 화면(가상 데이터). 자동 입력 일정이 [이름]연차, [이름]반차(오전) 형식으로 표시됩니다.</p>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="case" id="case6">
+    <div class="case-head">
+      <div class="big">06</div>
+      <h2>업무 담당자 찾기 R&amp;R 검색 페이지</h2>
+      <div class="meta">씨티씨바이오 경영기획실 · 2026.11 ~</div>
+    </div>
+    <div class="steps">
+      <div class="step"><span class="k">문제</span>ESG 관련 업무가 늘면서 현업이 누구에게 협조를 요청해야 할지 몰라 헤맨 경우가 두세 번 있었습니다.</div>
+      <div class="step"><span class="k">진단</span>담당자 정보가 사람의 기억에 의존하고 있어, R&amp;R을 조직의 기준으로 정리해 검색할 수 있게 만들어야 한다고 판단했습니다.</div>
+      <div class="step"><span class="k">실행</span>경영지원부문 R&amp;R을 검색 가능한 구조로 재정리하고, 시안을 AI 도구로 직접 제작해 IT팀에 검토를 요청했습니다.</div>
+      <div class="step res"><span class="k">결과</span>IT팀이 인사팀에 전사 R&amp;R 정리를 요청해 둔 단계까지 진행됐습니다. 개인이 만든 시안이 전사 논의로 이어졌습니다.</div>
+    </div>
+    <div class="viz">
+      <h3>개인의 발견에서 조직의 기준까지</h3>
+      <ol class="flow">
+        <li>업무 협조 필요<small>현업이 담당자를 몰라 헤맴</small></li>
+        <li>R&amp;R 재정리<small>경영지원부문 업무를 검색 구조로</small></li>
+        <li>시안 직접 제작<small>AI 도구 활용</small></li>
+        <li class="hl">IT팀 검토 요청<small>연말 R&amp;R 확정 후 타 부문 확대</small></li>
+      </ol>
+      <div class="shots" style="margin-top:16px">
+        <img class="shot" src="screen-rnr.png" alt="이름으로 검색하면 담당 업무 목록이 나오는 담당자 찾기 예시 화면" width="1800" height="1222" loading="lazy">
+      </div>
+      <p class="cap">예시 화면(가상 데이터). 이름과 연락처는 모두 임의로 만든 값입니다.</p>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>송은비 · 010-2966-6504 · seunbi96@gmail.com</span>
+    <span>전략기획그룹 HR 운영(HRM) 지원 포트폴리오</span>
+  </footer>
+</main>
+</body>
+</html>
